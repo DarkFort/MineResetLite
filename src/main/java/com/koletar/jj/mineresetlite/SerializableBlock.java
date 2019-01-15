@@ -23,7 +23,7 @@ public class SerializableBlock {
     public SerializableBlock(String self) {
         String[] bits = self.split(":");
         if (bits.length < 1) {
-            throw new IllegalArgumentException("String form of SerializableBlock didn't have sufficient data");
+            throw new IllegalArgumentException("В строковой форме SerializableBlock недостаточно данных");
         }
         
         try {
@@ -32,7 +32,7 @@ public class SerializableBlock {
             this.blockId = this.type.name();
 			
         } catch (NumberFormatException nfe) {
-            throw new IllegalArgumentException("Unable to convert id to integer and data to byte");
+            throw new IllegalArgumentException("Невозможно преобразовать ID в целое число и данные в байт");
         }
     }
 

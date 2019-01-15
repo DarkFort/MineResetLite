@@ -41,10 +41,10 @@ public class Phrases {
             return "";
         }
         if (getInstance().phrases == null) {
-            return "\u00A74Phrase Error! Did you /reload? Don't!";
+            return "\u00A74Ошибка фразы! Вы хотите /reload? Не надо!";
         }
         if (!getInstance().phrases.containsKey(key)) {
-            Logger.getLogger("Minecraft").warning("[MineResetLite] Unknown phrase key! '" + key + "'");
+            Logger.getLogger("Minecraft").warning("[MineResetLite] Неизвестная фраза ключа! '" + key + "'");
             return "";
         }
         String format;

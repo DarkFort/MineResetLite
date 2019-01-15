@@ -80,19 +80,19 @@ public class Mine implements ConfigurationSerializable {
 			
 			setMaxCount();
 		} catch (Throwable t) {
-			throw new IllegalArgumentException("Error deserializing coordinate pairs");
+			throw new IllegalArgumentException("Ошибка десериализации координатных пар");
 		}
 		try {
 			world = Bukkit.getServer().getWorld((String) me.get("world"));
 		} catch (Throwable t) {
-			throw new IllegalArgumentException("Error finding world");
+			throw new IllegalArgumentException("Ошибка поиска мира");
 		}
 		if (world == null) {
 			Logger l = Bukkit.getLogger();
-			l.severe("[MineResetLite] Unable to find a world! Please include these logger lines along with the stack trace when reporting this bug!");
-			l.severe("[MineResetLite] Attempted to load world named: " + me.get("world"));
-			l.severe("[MineResetLite] Worlds listed: " + StringTools.buildList(Bukkit.getWorlds(), "", ", "));
-			throw new IllegalArgumentException("World was null!");
+			l.severe("[MineResetLite] Невозможно найти мир! Пожалуйста, включите эти строки журнала вместе с трассировкой стека при сообщении об этой ошибке!");
+			l.severe("[MineResetLite] Попытка загрузить мир с именем: " + me.get("world"));
+			l.severe("[MineResetLite] Список миров: " + StringTools.buildList(Bukkit.getWorlds(), "", ", "));
+			throw new IllegalArgumentException("Мир был нулевым!");
 		}
 		try {
 			Map<String, Double> sComposition = (Map<String, Double>) me.get("composition");
@@ -101,7 +101,7 @@ public class Mine implements ConfigurationSerializable {
 				composition.put(new SerializableBlock(entry.getKey()), entry.getValue());
 			}
 		} catch (Throwable t) {
-			throw new IllegalArgumentException("Error deserializing composition");
+			throw new IllegalArgumentException("Ошибка десериализации композиции");
 		}
 		name = (String) me.get("name");
 		resetDelay = (Integer) me.get("resetDelay");
@@ -111,7 +111,7 @@ public class Mine implements ConfigurationSerializable {
 			try {
 				resetWarnings.add(Integer.valueOf(warning));
 			} catch (NumberFormatException nfe) {
-				throw new IllegalArgumentException("Non-numeric reset warnings supplied");
+				throw new IllegalArgumentException("Поставляются нечисловые предупреждения о сбросе");
 			}
 		}
 		if (me.containsKey("surface")) {

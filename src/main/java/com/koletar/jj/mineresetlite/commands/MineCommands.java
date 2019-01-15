@@ -29,18 +29,18 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"list", "l"},
-			description = "List the names of all Mines",
+			description = "Список всех шахт",
 			permissions = {"mineresetlite.mine.list"},
-			help = {"List the names of all Mines currently created, across all worlds."},
+			help = {"Список всех созданных в настоящее время шахт во всех мирах."},
 			min = 0, max = 0, onlyPlayers = false)
 	public void listMines(CommandSender sender, String[] args) {
 		sender.sendMessage(phrase("mineList", StringTools.buildList(plugin.mines, "&c", "&d, ")));
 	}
 	
 	@Command(aliases = {"pos1", "p1"},
-			description = "Change your first selection point",
-			help = {"Run this command to set your first selection point to the block you are looking at.",
-					"Use /mrl pos1 -feet to set your first point to the location you are standing on."},
+			description = "Изменить первую точку выделения",
+			help = {"Запустите эту команду, чтобы установить первую точку выделения на блок, на который вы смотрите.",
+					"Используйте /mrl pos1 -feet, чтобы установить первую точку на место, на котором вы стоите."},
 			usage = "(-feet)",
 			permissions = {"mineresetlite.mine.create", "mineresetlite.mine.redefine"},
 			min = 0, max = 1, onlyPlayers = true)
@@ -62,9 +62,9 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"pos2", "p2"},
-			description = "Change your first selection point",
-			help = {"Run this command to set your second selection point to the block you are looking at.",
-					"Use /mrl pos2 -feet to set your second point to the location you are standing on."},
+			description = "Изменить вторую точку выделения",
+			help = {"Запустите эту команду, чтобы установить вторую точку выделения на блок, на который вы смотрите.",
+					"Используйте /mrl pos2 -feet, чтобы установить вторую точку на место, на котором вы стоите."},
 			usage = "(-feet)",
 			permissions = {"mineresetlite.mine.create", "mineresetlite.mine.redefine"},
 			min = 0, max = 1, onlyPlayers = true)
@@ -86,9 +86,9 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"create", "save"},
-			description = "Create a mine from either your WorldEdit selection or by manually specifying the points",
-			help = {"Provided you have a selection made via either WorldEdit or selecting the points using MRL,",
-					"an empty mine will be created. This mine will have no composition and default settings."},
+			description = "Создать шахту либо из вашего выделения WorldEdit, либо вручную указав точки",
+			help = {"При условии, что у вас есть выделение сделанный с помощью WorldEdit или выделения точек с помощью MRL,",
+					"будет создана пустая шахта. Эта шахта не будет иметь композиции и настроек по умолчанию."},
 			usage = "<mine name>",
 			permissions = {"mineresetlite.mine.create"},
 			min = 1, max = -1, onlyPlayers = true)
@@ -152,7 +152,7 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"info", "i"},
-			description = "List information about a mine",
+			description = "Список информации о шахте",
 			usage = "<mine name>",
 			permissions = {"mineresetlite.mine.info"},
 			min = 1, max = -1, onlyPlayers = false)
@@ -205,10 +205,10 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"set", "add", "+"},
-			description = "Set the percentage of a block in the mine",
-			help = {"This command will always overwrite the current percentage for the specified block,",
-					"if a percentage has already been set. You cannot set the percentage of any specific",
-					"block, such that the percentage would then total over 100%."},
+			description = "Установить процент блока в шахте",
+			help = {"Эта команда всегда будет перезаписывать текущий процент для указанного блока,",
+					"если процент уже был установлен. Вы не можете установить процент любого конкретного",
+					"блока, так что процент будет составлять более 100%."},
 			usage = "<mine name> <block>:(data) <percentage>%",
 			permissions = {"mineresetlite.mine.composition"},
 			min = 3, max = -1, onlyPlayers = false)
@@ -281,7 +281,7 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"unset", "remove", "-"},
-			description = "Remove a block from the composition of a mine",
+			description = "Удалить блок из состава шахты",
 			usage = "<mine name> <block>:(data)",
 			permissions = {"mineresetlite.mine.composition"},
 			min = 2, max = -1, onlyPlayers = false)
@@ -322,11 +322,11 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"reset", "r"},
-			description = "Reset a mine",
-			help = {"If you supply the -s argument, the mine will silently reset. Resets triggered via",
-					"this command will not show a 1 minute warning, unless this mine is flagged to always",
-					"have a warning. If the mine's composition doesn't equal 100%, the composition will be",
-					"padded with air until the total equals 100%."},
+			description = "Сбросить шахту",
+			help = {"Если вы укажете аргумент -s, шахта автоматически сбросит настройки. Сброс, вызванный этой",
+					"командой, не будет показывать 1-минутное предупреждение, если эта шахта не помечена, чтобы",
+					"всегда иметь предупреждение. Если состав шахты не равен 100%, состав будет",
+					"заполняться воздухом до тех пор, пока общее количество не станет равным 100%."},
 			usage = "<mine name> (-s)",
 			permissions = {"mineresetlite.mine.reset"},
 			min = 1, max = -1, onlyPlayers = false)
@@ -343,15 +343,15 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"flag", "f"},
-			description = "Set various properties of a mine, including automatic resets",
-			help = {"Available flags:",
-					"resetPercent: A integer number (0 < x < 100) specifying the percentage of mined blocks triggering the reset. Set to -1 to disable automatic percent resets.",
-					"resetDelay: An integer number of minutes specifying the time between automatic resets. Set to 0 to disable automatic resets.",
-					"resetWarnings: A comma separated list of integer minutes to warn before the automatic reset. Warnings must be less than the reset delay.",
-					"surface: A block that will cover the entire top surface of the mine when reset, obscuring surface ores. Set surface to air to clear the value.",
-					"fillMode: An alternate reset algorithm that will only \"reset\" air blocks inside your mine. Set to true or false.",
-					"fillMode: An alternate reset algorithm that will only \"reset\" air blocks inside your mine. Set to true or false.",
-					"isSilent: A boolean (true or false) of whether or not this mine should broadcast a reset notification when it is reset *automatically*"},
+			description = "Установить различные свойства шахты, в том числе автоматический сброс",
+			help = {"Доступные флаги:",
+					"resetPercent: Целое число (0 <x <100), указывающее процент добытых блоков, инициирующих сброс. Установите -1, чтобы отключить автоматический сброс процентов.",
+					"resetDelay: Целое число минут, указывающее время между автоматическим сбросом. Установите 0, чтобы отключить автоматический сброс.",
+					"resetWarnings: Разделенный запятыми список целых минут для предупреждения перед автоматическим сбросом. Предупреждения должны быть меньше, чем задержка сброса.",
+					"surface: Блок, который при сбросе покроет всю верхнюю поверхность шахты, скрывая поверхность руды. Установите поверхность на воздух, чтобы очистить значение.",
+					"fillMode: Альтернативный алгоритм сброса, который будет только \"сбрасывать\" воздушные блоки внутри вашей шахты. Установите true или false.",
+					"fillMode: Альтернативный алгоритм сброса, который будет только \"сбрасывать\" воздушные блоки внутри вашей шахты. Установите true или false.",
+					"isSilent: Логическое значение (true или false) того, должна ли эта шахта передавать уведомление о сбросе, когда оно сбрасывается *автоматически*"},
 			usage = "<mine name> <setting> <value>",
 			permissions = {"mineresetlite.mine.flag"},
 			min = 3, max = -1, onlyPlayers = false)
@@ -501,8 +501,8 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"erase"},
-			description = "Completely erase a mine",
-			help = {"Like most erasures of data, be sure you don't need to recover anything from this mine before you delete it."},
+			description = "Полностью удалить шахту",
+			help = {"Как и большинство данных, убедитесь, что вам не нужно ничего восстанавливать с этой шахты, прежде чем удалить ее."},
 			usage = "<mine name>",
 			permissions = {"mineresetlite.mine.erase"},
 			min = 1, max = -1, onlyPlayers = false)
@@ -514,8 +514,8 @@ public class MineCommands {
 	}
 	
 	@Command(aliases = {"reschedule"},
-			description = "Synchronize all automatic mine resets",
-			help = {"This command will set the 'start time' of the mine resets to the same point."},
+			description = "Синхронизация автоматический сброс всех шахт",
+			help = {"Эта команда установит 'время начала' сброса шахты в ту же точку."},
 			usage = "",
 			permissions = {"mineresetlite.mine.flag"},
 			min = 0, max = 0, onlyPlayers = false)
@@ -527,7 +527,7 @@ public class MineCommands {
 		sender.sendMessage(phrase("rescheduled"));
 	}
 	
-	@Command(aliases = {"tp", "teleport"}, description = "Teleport to the specified mine", help = {"This command will teleport you to the center of the specified mine or at the teleport point if it is specified."}, usage = "<mine name>", permissions = {"mineresetlite.mine.tp"}, min = 1, max = -1, onlyPlayers = true)
+	@Command(aliases = {"tp", "teleport"}, description = "Телепортация к указанной шахте", help = {"Эта команда телепортирует вас в центр указанной шахты или в точку телепортации, если это указано."}, usage = "<mine name>", permissions = {"mineresetlite.mine.tp"}, min = 1, max = -1, onlyPlayers = true)
 	public void teleport(CommandSender sender, String[] args) {
 		Mine mine = null;
 		
@@ -545,7 +545,7 @@ public class MineCommands {
 		mine.teleport((Player) sender);
 	}
 	
-	@Command(aliases = {"settp", "stp"}, description = "Sets the specified mine's spawn point", help = {"This command will set the specified mine's reset spawn point to where you're standing.", "Use /mrl removetp <mine name> to remove the mine's spawn point."}, usage = "<mine name>", permissions = {"mineresetlite.mine.settp"}, min = 1, max = -1, onlyPlayers = true)
+	@Command(aliases = {"settp", "stp"}, description = "Установить указанную точку спавна шахты", help = {"Эта команда установит точку спавна сброса указанной шахты туда, где вы стоите.", "Используйте /mrl removetp <имя шахты> для удаления точки спавна шахты."}, usage = "<mine name>", permissions = {"mineresetlite.mine.settp"}, min = 1, max = -1, onlyPlayers = true)
 	public void setTP(CommandSender sender, String[] args) throws InvalidCommandArgumentsException {
 		Player player = (Player) sender;
 		Mine[] mines = plugin.matchMines(StringTools.buildSpacedArgument(args));
@@ -555,7 +555,7 @@ public class MineCommands {
 		sender.sendMessage(phrase("tpSet", mines[0]));
 	}
 	
-	@Command(aliases = {"removetp", "rtp"}, description = "Removes the specified mine's spawn point", help = {"This comamnd will remove the specified mine's reset spawn point.", "Use /mrl removetp to remove the spawn point.", "use /mrl settp to set it to where you're standing."}, usage = "<mine name>", permissions = {"mineresetlite.mine.removetp"}, min = 1, max = -1, onlyPlayers = true)
+	@Command(aliases = {"removetp", "rtp"}, description = "Удалить указанную точку спавна шахты", help = {"Эта команда удалит точку спавна указанной шахты.", "Используйте /mrl removetp для удаления точки спавна шахты.", "Используйте /mrl settp, чтобы установить ее туда, где вы стоите."}, usage = "<mine name>", permissions = {"mineresetlite.mine.removetp"}, min = 1, max = -1, onlyPlayers = true)
 	public void removeTP(CommandSender sender, String[] args) throws InvalidCommandArgumentsException {
 		Player player = (Player) sender;
 		Mine[] mines = plugin.matchMines(StringTools.buildSpacedArgument(args));
@@ -565,7 +565,7 @@ public class MineCommands {
 		sender.sendMessage(phrase("tpRemove", mines[0]));
 	}
 	
-	@Command(aliases = {"addpotion", "addpot"}, description = "Adds the specified potion to the mine", help = {"This command will saddthe specified potion to the mine where you're standing.", "Use /mrl removepot <mine name> <potionname> to remove the specified potion effect from the mine."}, usage = "<mine name> <potionname:amplifier>", permissions = {"mineresetlite.mine.addpotion"}, min = 1, max = -1, onlyPlayers = true)
+	@Command(aliases = {"addpotion", "addpot"}, description = "Добавить указанное зелье в шахте", help = {"Эта команда доставит указанное зелье в шахту, где вы стоите.", "Испольуйте /mrl removepot <имя шахты> <имя зелья>, чтобы убрать указанный эффект зелья из шахты."}, usage = "<mine name> <potionname:amplifier>", permissions = {"mineresetlite.mine.addpotion"}, min = 1, max = -1, onlyPlayers = true)
 	public void addPot(CommandSender sender, String[] args) throws InvalidCommandArgumentsException {
 		Mine[] mines = plugin.matchMines(StringTools.buildSpacedArgument(args, 1));
 		if (invalidMInes(sender, mines)) return;
@@ -574,7 +574,7 @@ public class MineCommands {
 		sender.sendMessage(phrase("potionAdded", args[args.length - 1], mines[0]));
 	}
 	
-	@Command(aliases = {"removepotion", "removepot"}, description = "Removes the specified potion from the mine", help = {"This comamnd will remove the specified potion from the mine.", "Use /mrl removepot <potionname> to remove the potion.", "Use /mrl addpot <mine name> <potionname:amplifier> to add the specified potion effect to the mine."}, usage = "<mine name> <potionname>", permissions = {"mineresetlite.mine.removepotion"}, min = 1, max = -1, onlyPlayers = true)
+	@Command(aliases = {"removepotion", "removepot"}, description = "Удалить указанное зелье в шахте", help = {"Эта команда удалит указанное зелье в шахте, где вы стоите.", "Используйте /mrl removepot <potionname>, чтобы убрать указанный эффект зелья из шахты.", "Используйте /mrl addpot <имя шахты> <имя зелья:усиление>, чтобы добавить указанный эффект зелья в шахту."}, usage = "<mine name> <potionname>", permissions = {"mineresetlite.mine.removepotion"}, min = 1, max = -1, onlyPlayers = true)
 	public void removePot(CommandSender sender, String[] args) throws InvalidCommandArgumentsException {
 		Mine[] mines = plugin.matchMines(StringTools.buildSpacedArgument(args, 1));
 		if (invalidMInes(sender, mines)) return;

@@ -45,7 +45,7 @@ public class CommandManager {
     }
 
     @Command(aliases = {"help", "?"},
-            description = "Provide information about MineResetLite commands",
+            description = "Предоставить информацию о командах MineResetLite",
             min = 0, max = -1)
     public void help(CommandSender sender, String[] args) {
         if (args.length >= 1) {
@@ -128,14 +128,14 @@ public class CommandManager {
             method.invoke(instances.get(method), methodArgs);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-            throw new RuntimeException("Invalid methods on command!");
+            throw new RuntimeException("Неверные методы в команде!");
         } catch (InvocationTargetException e) {
             if (e.getCause() instanceof InvalidCommandArgumentsException) {
                 sender.sendMessage(phrase("invalidArguments"));
                 sender.sendMessage(phrase("invalidArgsUsage", command.aliases()[0], command.usage()));
             } else {
                 e.printStackTrace();
-                throw new RuntimeException("Invalid methods on command!");
+                throw new RuntimeException("Неверные методы в команде!");
             }
         }
     }

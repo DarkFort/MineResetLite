@@ -90,8 +90,8 @@ public class MineResetLite extends JavaPlugin {
 		mines = new ArrayList<>();
 		logger = getLogger();
 		if (!setupConfig()) {
-			logger.severe("Since I couldn't setup config files properly, I guess this is goodbye. ");
-			logger.severe("Plugin Loading Aborted!");
+			logger.severe("Так как вы не смогли правильно настроить конфигурационные файлы, я думаю, это до свидания. ");
+			logger.severe("Загрузка плагина прервана!");
 			return;
 		}
 		commandManager = new CommandManager();
@@ -128,18 +128,18 @@ public class MineResetLite extends JavaPlugin {
 		File[] mineFiles = new File(getDataFolder(), "mines").listFiles(new IsMineFile());
 		assert mineFiles != null;
 		for (File file : mineFiles) {
-			logger.info("Loading mine from file '" + file.getName() + "'...");
+			logger.info("Загрузка шахты из файла '" + file.getName() + "'...");
 			FileConfiguration fileConf = YamlConfiguration.loadConfiguration(file);
 			try {
 				Object o = fileConf.get("mine");
 				if (!(o instanceof Mine)) {
-					logger.severe("Mine wasn't a mine object! Something is off with serialization!");
+					logger.severe("Шахта не была моим объектом! С сериализацией что-то не так!");
 					continue;
 				}
 				Mine mine = (Mine) o;
 				mines.add(mine);
 			} catch (Throwable t) {
-				logger.severe("Unable to load mine!");
+				logger.severe("Невозможно загрузить шахту!");
 			}
 		}
 		resetTaskId = getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
@@ -199,7 +199,7 @@ public class MineResetLite extends JavaPlugin {
 		}
 		HandlerList.unregisterAll(this);
 		//save();
-		logger.info("MineResetLite disabled");
+		logger.info("MineResetLite отключен");
 	}
 	
 	public Material matchMaterial(String name) {
@@ -294,7 +294,7 @@ public class MineResetLite extends JavaPlugin {
 			try {
 				mineConf.save(mineFile);
 			} catch (IOException e) {
-				logger.severe("Unable to serialize mine!");
+				logger.severe("Невозможно сериализовать шахту!");
 				e.printStackTrace();
 			}
 		}
@@ -320,18 +320,18 @@ public class MineResetLite extends JavaPlugin {
 	private boolean setupConfig() {
 		File pluginFolder = getDataFolder();
 		if (!pluginFolder.exists() && !pluginFolder.mkdir()) {
-			logger.severe("Could not make plugin folder! This won't end well...");
+			logger.severe("Не удалось создать папку для плагина! Это не закончится хорошо...");
 			return false;
 		}
 		File mineFolder = new File(getDataFolder(), "mines");
 		if (!mineFolder.exists() && !mineFolder.mkdir()) {
-			logger.severe("Could not make mine folder! Abort! Abort!");
+			logger.severe("Не могу создать мою папку! Прекратить! Прекратить!");
 			return false;
 		}
 		try {
 			Config.initConfig(getDataFolder());
 		} catch (IOException e) {
-			logger.severe("Could not make config file!");
+			logger.severe("Не удалось создать файл конфигурации!");
 			e.printStackTrace();
 			return false;
 		}
